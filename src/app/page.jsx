@@ -1,7 +1,10 @@
 "use client";
+
 import Navbar from '@/components/Navbar/Navbar';
+import ShoppingCart from '@/components/shoppingCart';
 import { Container } from '@mui/material';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+
 
 const theme = createTheme({
   palette: {
@@ -14,14 +17,17 @@ const theme = createTheme({
   },    
 });
 
-export default function App (){
+export default function page (){
   return (
     <>
-    <ThemeProvider theme={theme}>
+      <ThemeProvider theme={theme}>
      <Navbar/>
-    <Container sx={{mt: 5}}>
+    <Container sx={{mt: 15}}>
+    <ShoppingCart/>
     </Container>
     </ThemeProvider>
+      
+  
     </>
   );
 }

@@ -1,13 +1,21 @@
 import NavListDrawers from "./NavListDrawers";
 import { AppBar, Box, Button, Drawer, IconButton, Toolbar, Typography, InputBase, styled } from "@mui/material";
 import { useState, useEffect } from 'react';
+import SearchContainer from "./SearchContainer";
+import SearchModal from "./SearchModal";
+import LoginDrawers from "./LoginDrawers";
+import LoginDrawerMax from "./LoginDrawerMax"
+
+
+/* Icons */
 import InboxIcon from "@mui/icons-material/Inbox";
 import MenuIcon from "@mui/icons-material/Menu";
 import DraftsIcon from "@mui/icons-material/Drafts";
 import SearchIcon from '@mui/icons-material/Search';
 import CasesIcon from '@mui/icons-material/Cases';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import SearchModal from "./SearchModal";
+import AccountBoxIcon from '@mui/icons-material/AccountBox';
+
 
 
 const navLinks = [
@@ -54,22 +62,6 @@ const TOPrightNavLinks = [
     },
 ];
 
-const SearchContainer = styled('div')({
-    display: 'flex',
-    alignItems: 'center',
-    backgroundColor: '#f5f5f5',
-    borderRadius: 10,
-    paddingLeft: 10,
-    width: "12%",
-    marginRight: '5%'
-});
-
-const SearchInput = styled(InputBase)({
-    marginLeft: 8,
-    borderRadius: 10,
-    flex: 1,
-});
-
 
 const SecondAppBar = styled(AppBar)(({ theme }) => ({
 
@@ -98,14 +90,8 @@ const FirstAppBar = styled(AppBar)(({ theme, showSecondAppBar }) => ({
 }));
 
 
-
-
-
-
 export default function Navbar() {
     const [open, setOpen] = useState(false);
-
-    const [searchValue, setSearchValue] = useState('');
 
     const [windowWidth, setWindowWidth] = useState(0);
     useEffect(() => {
@@ -121,10 +107,6 @@ export default function Navbar() {
         }
     }, []);
     
-
-    const handleSearchChange = (event) => {
-        setSearchValue(event.target.value);
-    };
 
   
     
@@ -190,38 +172,22 @@ export default function Navbar() {
                     </Box>
 
                     <Box sx={{ flexGrow: 1 }} />
-                    
 
+                          
+       {
+  windowWidth > 800 ? (
+    <SearchContainer >
+      <SearchIcon />
+    </SearchContainer>
+  ) : (
+    <SearchModal>
+      <SearchIcon />
+    </SearchModal>
+  )
+}
+                     
 
-
-                    {
-                        windowWidth > 800 ?
-                            <SearchContainer>
-                                <SearchIcon />
-                                <SearchInput
-                                    placeholder="Search..."
-                                    inputProps={{ 'Roboto': 'search' }}
-                                    value={searchValue}
-                                    onChange={handleSearchChange}
-                                />
-                            </SearchContainer>
-
-                            : <SearchModal>
-                                <SearchIcon />
-                                <SearchInput
-                                    placeholder="Search..."
-                                    inputProps={{ 'Roboto': 'search' }}
-                                    value={searchValue}
-                                    onChange={handleSearchChange}
-                                />
-                            </SearchModal>
-
-
-                    }   
-
-                    
-
-                    <Box sx={{ display: 'flex', alignItems: 'center', marginLeft: 'auto', marginRight: '3rem' }}>
+                    <Box sx={{ display: 'flex', alignItems: 'center', marginLeft: 'auto', marginRight: '0.9rem' }}>
                         {rightNavLinks.map((item, index) => (
 
                             <Box key={index} sx={{ marginRight: index === rightNavLinks.length - 1 ? '0' : '0.5rem' }}>
@@ -238,13 +204,25 @@ export default function Navbar() {
 
                     </Box>
 
+                    {
+  windowWidth > 600 ? (
+    <LoginDrawerMax >
+      <AccountBoxIcon />
+    </LoginDrawerMax>
+  ) : (
+    <LoginDrawers>
+      <AccountBoxIcon/>
+    </LoginDrawers>
+  )
+}
+
 
                 </Toolbar>
             </FirstAppBar>
 
             <Drawer
                 open={open}
-                anchor="right"
+                anchor="left"
                 onClose={() => setOpen(false)}
                 sx={{ display: { xs: "flex", sm: "none" } }}
             >
