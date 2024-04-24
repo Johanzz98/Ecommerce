@@ -1,12 +1,9 @@
 import React, { useState } from "react";
-import { Drawer, Box, Typography, IconButton, useMediaQuery } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
+import { Drawer, Box, Typography, IconButton } from "@mui/material";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
-const LoginDrawerMax = () => {
-  const theme = useTheme();
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+const LoginDrawers = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   const handleDrawerOpen = () => {
@@ -32,11 +29,11 @@ const LoginDrawerMax = () => {
         anchor="right"
         open={isDrawerOpen} // Estado de apertura controlado por isDrawerOpen
         onClose={handleDrawerClose} // Cierra el Drawer al hacer clic fuera de él
-        variant={isSmallScreen ? "temporary" : "permanent"}
+        variant="temporary" // Cambia la variante a "temporary" para que se cierre automáticamente al hacer clic fuera de él
         ModalProps={{
           keepMounted: true, // Mejora el rendimiento en pantallas móviles
         }}
-        PaperProps={{ style: { width: 400 } }} // Ancho del Drawer en dispositivos pequeños
+        PaperProps={{ style: { width: 300 } }} // Ajusta el ancho del Drawer
       >
         <Box p={2} textAlign="center" role="presentation">
           <IconButton onClick={handleDrawerClose}> {/* Cierra el Drawer al hacer clic en el IconButton */}
@@ -51,4 +48,4 @@ const LoginDrawerMax = () => {
   );
 };
 
-export default LoginDrawerMax;
+export default LoginDrawers;

@@ -1,19 +1,22 @@
-import React, { useReducer, useEffect, useState } from 'react';
-import { ShoppingInitialState, ShoppingReducers } from '@/redurcers/ShoppingReducers';
+import React, { useReducer, useEffect} from 'react';
+import { ShoppingInitialState, ShoppingReducers } from '@/services/redurcers/ShoppingReducers';
 import ProductItem from './ProductItem';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import CartItems from './CartItems';
 import { TYPES } from '@/actions/ShoppingActions';
+import  Button from '@mui/material/Button';
+
+import {useSelector, useDispatch} from "react-redux"
 
 // Estilos
 
 
 // Lógica
 const ShoppingCart = () => {
-  const [state, dispatch] = useReducer(ShoppingReducers, ShoppingInitialState);
-  const { products, cart } = state;
+  const  dispatch = useDispatch();
+  const { cart } = useSelector((state) => state.cart );
 
 
   useEffect(() => {
@@ -25,8 +28,8 @@ const ShoppingCart = () => {
   }, []);
 
   useEffect(() => {
-    localStorage.setItem('ShoppingCarrito', JSON.stringify(state.cart));
-  }, [state.cart]);
+    localStorage.setItem('ShoppingCarrito', JSON.stringify(cart));
+  }, [cart]);
 
 
   const addToCart = (id) => {
@@ -46,21 +49,17 @@ const ShoppingCart = () => {
     dispatch({type:TYPES.CLEAR_CART})
   };
 
+  const addTalla= (id) => {
+    dispatch({type:TYPES.ADD_TALLA, payload: id});
+  };
+
   return (
     <Grid container spacing={2}>
-      <Grid item xs={12} sm={6} md={6}>
-        <Typography variant='h2' >Carrito de compras</Typography>
-        <Typography variant='h3'>Productos</Typography>
-        <Paper >
-          {products.map((product) => (
-            <ProductItem key={product.id} data={product} addToCart={addToCart} />
-          ))}
-        </Paper>
-      </Grid> 
+     
       <Grid item xs={12} sm={6} md={6}>
         <Typography variant="h3" >Carrito 211</Typography>
         <Paper>
-          <button onClick={clearCart}>Limpiar carrito</button>
+          <Button variant="contained" color="secondary" onClick={clearCart}>Limpiar carrito</Button>
           {
             cart.map((item, index) => ( <CartItems key={index} data={item} delFromCart={delFromCart}/>))
           }
