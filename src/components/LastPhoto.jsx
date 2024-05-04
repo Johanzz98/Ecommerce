@@ -1,63 +1,99 @@
 import React from 'react';
 import { Box, CardContent, Grid, Hidden, Typography } from '@mui/material';
 
-const foto = {
- maxWidth: "100%",
- height: "auto",
- margin: "20px auto",
- padding: "5px",
- marginTop: "20px"
-};
-
 const setMidIz = {
- fontFamily: "Nunito Sans, sans-serif",
- fontOpticalSizing: 'auto',
- fontWeight: 600,
- margin: "0 0 0 2rem",
- fontSize: "24px",
- fontStyle: 'normal',
- fontVariationSettings: '"wdth" 125, "YTLC" 540'
+  fontFamily: "Nunito Sans, sans-serif",
+  fontOpticalSizing: 'auto',
+  fontWeight: 600,
+  textAlign: "center",
+  fontSize: "24px",
+  fontStyle: 'normal',
+  fontVariationSettings: '"wdth" 125, "YTLC" 540',
+  marginTop:'8px'
 };
 
 export default function LastPhoto() {
- return (
-    <Grid container spacing={2}>
+  return (
+    <Grid container spacing={2} alignItems="center" justifyContent="center">
       {/* Para pantallas extra pequeñas y pequeñas, ocupa 6 columnas */}
-      <Grid item xs={12} sm={6}>
-        <Box style={foto}>
+      <Hidden mdDown>
+      <Grid item xs={12} sm={4}>
+        <Box>
           <CardContent>
             <img
-              src="https://i.pinimg.com/564x/86/c3/e5/86c3e55d6542f52cd680b19f4724e65e.jpg"
-              srcSet="https://i.pinimg.com/564x/86/c3/e5/86c3e55d6542f52cd680b19f4724e65e.jpg 2x"
+              src="https://i.pinimg.com/564x/83/3c/16/833c161137fbeca1402c58f095eb3068.jpg"
+              srcSet="https://i.pinimg.com/564x/cb/53/92/cb539275b309c4650b9205e120e65ae2.jpg"
+              
               loading="lazy"
               alt="Image 1"
-              style={{ width: '100%', height: 'auto' }} // Asegura que la imagen se ajuste al contenedor
+              style={{ width: '100%', height: '600px', objectFit: 'contain' }} // Asegura que la imagen se ajuste al contenedor
             />
-            <Typography style={setMidIz}>
-              StreetWears Infinite Pro
-            </Typography>
+            
+
           </CardContent>
         </Box>
       </Grid>
       {/* Para pantallas medianas o mayores, muestra este elemento */}
-      <Hidden smDown>
+      
+      
+
+        {/* Segunda imagen */}
+        <Grid item xs={12} sm={4}>
+          <CardContent>
+            <img
+              src="https://i.pinimg.com/564x/0f/62/04/0f62046004c2efecd1aec5757c0e43f8.jpg"
+              loading="lazy"
+              alt="Image 2"
+              style={{ width: '100%', height: '600px', objectFit: 'contain' }}
+            />
+          </CardContent>
+        </Grid>
+
+        {/* Tercera imagen */}
+        <Grid item xs={12} sm={4}>
+          <CardContent>
+            <img
+          
+              srcSet="https://i.pinimg.com/564x/17/59/7c/17597c853770adab40fe91d790ff0219.jpg"
+              loading="lazy"
+              alt="Image 3"
+              style={{ width: '100%', height: '600px', objectFit: 'contain' }}
+            />
+          </CardContent>
+        </Grid>
+      </Hidden>
+      {/* Para el resto de pantallas, muestra este elemento */}
+      <Hidden smUp>
         <Grid item xs={12} sm={6}>
-          <Box style={foto}>
+
+        <Box>
+          <CardContent>
+            <img
+              
+              srcSet="https://i.pinimg.com/564x/ec/22/20/ec222045c284341b560d6a1a740c2266.jpg"
+              
+              loading="lazy"
+              alt="Image 1"
+              style={{ width: '100%', height: '600px', objectFit: 'contain' }} // Asegura que la imagen se ajuste al contenedor
+            />
+            
+
+          </CardContent>
+        </Box>
+          <Box>
             <CardContent>
               <img
-                src="https://i.pinimg.com/564x/af/49/a6/af49a67638db8f92fb764e7f9552a62b.jpg"
-                srcSet="https://i.pinimg.com/564x/af/49/a6/af49a67638db8f92fb764e7f9552a62b.jpg 2x"
+              
+                srcSet="https://i.pinimg.com/564x/9c/45/9b/9c459b4e11dee487885c2ae182fb8f4b.jpg"
                 loading="lazy"
                 alt="Image 2"
-                style={{ width: '100%', height: '800' }} // Asegura que la imagen se ajuste al contenedor
+                style={{ width: '100%', height: '600px', objectFit: 'contain' }} // Asegura que la imagen se ajuste al contenedor
               />
-              <Typography style={setMidIz}>
-                Supreme
-              </Typography>
+           
             </CardContent>
           </Box>
         </Grid>
       </Hidden>
     </Grid>
- );
+  );
 }

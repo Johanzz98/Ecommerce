@@ -1,12 +1,12 @@
 export const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
-      items: 3,
-      slidesToSlide: 3 // optional, default to 1.
+      items: 6,
+      slidesToSlide: 1 // optional, default to 1.
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
-      items: 2,
+      items: 1,
       slidesToSlide: 1 // optional, default to 1.
     },
     mobile: {
@@ -21,7 +21,7 @@ export const responsive = {
     {
       id: 7,
       imageurl:
-        "https://i.pinimg.com/564x/34/55/09/34550976fc40ae8b2e4bd2ecf0d18407.jpg",
+        "https://nikeclprod.vtexassets.com/arquivos/ids/410332-800-800?v=637831353509070000&width=800&height=800&aspect=true",
       name: "Detroit Jackets",
       price: 9.999,
       description: "Some text about the product..",
@@ -57,7 +57,7 @@ export const responsive = {
     {
       id: 11,
       imageurl:
-        "https://i.pinimg.com/564x/57/37/c7/5737c729d5ef7ea084b7e19d55a3eece.jpg",
+        "https://i.pinimg.com/564x/95/04/8a/95048aafc61bac7a3cf069066b53b4e7.jpg",
       name: "Health Club",
       price: 9.999,
       description: "Some text about the product..",
@@ -66,7 +66,7 @@ export const responsive = {
     {
       id: 12,
       imageurl:
-        "https://i.pinimg.com/564x/95/fb/fc/95fbfc1d936f025aaebda8d8696b1480.jpg",
+        "https://i.pinimg.com/564x/95/04/8a/95048aafc61bac7a3cf069066b53b4e7.jpg",
       name: "Clothes",
       price: 9.999,
       description: "Some text about the product..",

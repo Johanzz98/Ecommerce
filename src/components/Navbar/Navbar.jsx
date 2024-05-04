@@ -5,7 +5,7 @@ import SearchContainer from "./SearchContainer";
 import SearchModal from "./SearchModal";
 import LoginDrawers from "./LoginDrawers";
 import LoginDrawerMax from "./LoginDrawerMax"
-
+import NextLink from 'next/link'; // Importa el componente NextLink
 
 /* Icons */
 import InboxIcon from "@mui/icons-material/Inbox";
@@ -32,7 +32,7 @@ const navLinks = [
     },
     {
         title: "Register",
-        path: "/register",
+        path: "SignInOutContainer",
         icon: <MenuIcon />,
     }
 ];
@@ -54,7 +54,7 @@ const TOPrightNavLinks = [
     },
     {
         title: "registrarse/Login",
-        path: "#CaseIcons",
+        path: "SignInOutContainer",
         icon: <CasesIcon />,
     },
 ];
@@ -86,6 +86,10 @@ const FirstAppBar = styled(AppBar)(({ theme, showSecondAppBar }) => ({
     },
    
 }));
+
+
+const imgPath = "https://nikeclprod.vtexassets.com/assets/vtex/assets-builder/nikeclprod.store/3.0.10/icons/Assets_for_off%20platform/swoosh___33f7ffaf2fc124733c2c4a60a12a1160.svg";
+
 
 
 export default function Navbar() {
@@ -147,16 +151,12 @@ export default function Navbar() {
 
                     </IconButton>
 
-                    <Typography
-                        variant="h6"
-                        sx={{ flexGrow: 1.5 }}
-                    >
-                        Logo
-
-                    </Typography>
-                    
-
-                    <Box sx={{ display: { xs: "none", sm: "block" } }}>
+                    <Typography variant="h6" sx={{ width: '60px', aspectRatio: 'auto 60 / 28.8', height: '28.8px', marginLeft: '42px', cursor: 'pointer' }}>
+    <NextLink href="/">
+        <img src={imgPath} alt="Swoosh Icon" />
+    </NextLink>
+</Typography>
+                   {/* <Box sx={{ display: { xs: "none", sm: "block" } }}>
                         {navLinks.map((item) => (
                             <Button
                                 color="inherit"
@@ -168,7 +168,7 @@ export default function Navbar() {
                             </Button>
                         ))}
                     </Box>
-
+                    */}
                     <Box sx={{ flexGrow: 1 }} />
 
                           

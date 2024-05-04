@@ -74,7 +74,7 @@ export default function SearchContainer(props) {
       </IconButton>
 
       
-
+    {/* 
       <Modal open={open} onClose={handleClose}>
         <Box sx={styleBox}>
           <Slide direction="left" in={open} inEnter sx={style}>
@@ -91,6 +91,7 @@ export default function SearchContainer(props) {
           </Slide>
         </Box>
       </Modal>
+  */}
     </div>
   );
 }

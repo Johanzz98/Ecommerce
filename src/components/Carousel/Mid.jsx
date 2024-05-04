@@ -2,6 +2,7 @@ import React from 'react';
 import { Box, Typography, Button } from '@mui/material';
 import Carousel from 'react-multi-carousel';
 import "react-multi-carousel/lib/styles.css";
+import "./carousel.css"
 import ProductMid from "./ProductMid";
 import { productData } from "./MidItem";
 import { useTheme } from '@mui/material/styles';
@@ -21,14 +22,18 @@ const setMid = {
 };
 
 const setMidIz = {
-   margin: "0 20px",
+    margin: "24px 20px",
     fontFamily: "Nunito Sans, sans-serif",
     fontOpticalSizing: 'auto',
     fontWeight: 1000,
     fontSize: "36px",
     fontStyle: 'normal',
-    fontVariationSettings: '"wdth" 125, "YTLC" 540'
+    fontVariationSettings: '"wdth" 125, "YTLC" 540',
+    display: 'flex',
+    alignItems: "center",
+    justifyContent: "center", // Añade esta línea para centrar horizontalmente
   };
+  
 
 const buttonContainerStyle = {
     display: 'flex',
@@ -55,12 +60,12 @@ function Mid() {
         desktop: {
             breakpoint: { max: 3000, min: 1024 },
             items: 3,
-            slidesToSlide: 3
+            slidesToSlide: 1
         },
         tablet: {
             breakpoint: { max: 1024, min: 768 },
             items: 2,
-            slidesToSlide: 2
+            slidesToSlide: 1
         },
         mobile: {
             breakpoint: { max: 768, min: 0 },
@@ -80,7 +85,7 @@ function Mid() {
 
     return (
         <> 
-            <Box>    
+          <Box >    
                 <Typography sx={setMid}> FEEL THE UNREAL</Typography>
             </Box>
             <Box sx={buttonContainerStyle}>
@@ -94,7 +99,7 @@ function Mid() {
                 <Typography style={setMidIz}> Shadow Elite Nuevo </Typography>
             </Box>
 
-            <Box>
+            <Box >
                 <Carousel responsive={responsive} infinite>
                     {product}
                 </Carousel>
@@ -104,3 +109,4 @@ function Mid() {
 }
 
 export default Mid;
+  

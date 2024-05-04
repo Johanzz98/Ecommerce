@@ -3,6 +3,7 @@ import { TYPES } from "@/actions/ShoppingActions";
 const ShoppingInitialState = {
 
     cart: [],
+    total:0,
 };
 
 export function ShoppingReducers(state = ShoppingInitialState, action) {
@@ -81,7 +82,23 @@ export function ShoppingReducers(state = ShoppingInitialState, action) {
             };
            }
            
-        
+      case TYPES.TOTAL:{
+        console.log("hola amiguito")
+
+        let totalItem= 0;
+        state.cart.map((item) => {
+            totalItem+= item.quantity * item.price
+        })
+        console.log(totalItem)
+
+         return{
+            ...state,
+            total: totalItem
+
+         }
+
+
+      }
 
         case TYPES.CLEAR_CART:
             return ShoppingInitialState;

@@ -6,15 +6,17 @@ import Carousel from 'react-multi-carousel';
 import "react-multi-carousel/lib/styles.css";
 import LastCarouselProduct from "./LastCarouselProduct";
 import { productData,  responsive} from "./LastCarouselItem";
-
+import "./carousel.css"
 const setMid = {
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  marginBottom:'16px',
+  textAlign: 'center',
   fontFamily: "Nunito Sans, sans-serif",
   fontOpticalSizing: 'auto',
   fontWeight: 1000,
-  fontSize: "24px",
+  fontSize: "36px",
   fontStyle: 'normal',
   fontVariationSettings: '"wdth" 125, "YTLC" 540'
   
@@ -24,13 +26,13 @@ const setMid = {
  const buttonContainerStyle = {
   display: 'flex',
   justifyContent: 'center',
-  gap: '60px', 
-  marginBottom: '30px',
+  gap: '20px', 
+  marginBottom: '20px', 
 };
 
 const buttonStyle= {
   outline: "0",
-  padding: "8px 30px", 
+  padding: "8px 20px", 
   color: "white",
   backgroundColor: "#000",
   borderRadius: "20px",
@@ -53,8 +55,8 @@ function LastCarousel() {
     <> 
 
 
-            <Box sx={{mb:4}}>    
-                <Typography style={setMid}> Fortaleza en todos sus ángulos.</Typography>
+            <Box sx={{mb:2}}>    
+                <Typography style={setMid}> Fortaleza en todos sus ángulos</Typography>
             </Box>
             <Box sx={buttonContainerStyle}>
                 <Button variant="contained" sx={buttonStyle}>

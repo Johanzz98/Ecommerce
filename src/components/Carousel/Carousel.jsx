@@ -17,7 +17,7 @@ export const dataLarge = [
     id: 1,
     title: "Hola amiguitos",
     price: "$990",
-    imgPath: "https://vanscl.vtexassets.com/assets/vtex.file-manager-graphql/images/575f56d8-07b5-4dae-a3db-14d28e5724d3___ed226d708775849df7bdea57a5448e12.jpg",
+    imgPath: "https://vanscl.vtexassets.com/assets/vtex.file-manager-graphql/images/0d80c65f-be52-4a0b-bb0f-066f9a0e1d40___e29317715f7857dca06cf7b3ccd58e5d.png",
  },
 
  {
@@ -114,7 +114,7 @@ function Carousel() {
         steps={maxSteps}
         position="static"
         activeStep={activeStep}
-        variant="dots"
+        variant=""
         nextButton={
           <Button
             size="large"

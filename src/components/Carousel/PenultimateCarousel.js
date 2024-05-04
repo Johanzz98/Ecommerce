@@ -5,16 +5,20 @@ import Carousel from 'react-multi-carousel';
 import "react-multi-carousel/lib/styles.css";
 import PenultimateCarouselProduct from "./PenultimateCarouselProduct";
 import { productData,  responsive } from "./PenultimateCarouselItem";
+import "./carousel.css"
+
 
 const setMidIz = {
-  margin: "12px 3rem 12px",
- 
-   fontFamily: "Nunito Sans, sans-serif",
-   fontOpticalSizing: 'auto',
-   fontWeight: 1000,
-   fontSize: "28px",
-   fontStyle: 'normal',
-   fontVariationSettings: '"wdth" 125, "YTLC" 540'
+  margin: "24px 20px",
+  fontFamily: "Nunito Sans, sans-serif",
+  fontOpticalSizing: 'auto',
+  fontWeight: 1000,
+  fontSize: "36px",
+  fontStyle: 'normal',
+  fontVariationSettings: '"wdth" 125, "YTLC" 540',
+  display: 'flex',
+  alignItems: "center",
+  justifyContent: "center", // Añade esta línea para centrar horizontalmente
  };
 
 function PenultimateCarousel() {

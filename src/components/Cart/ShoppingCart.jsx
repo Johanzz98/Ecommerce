@@ -10,13 +10,10 @@ import  Button from '@mui/material/Button';
 
 import {useSelector, useDispatch} from "react-redux"
 
-// Estilos
 
-
-// Lógica
 const ShoppingCart = () => {
   const  dispatch = useDispatch();
-  const { cart } = useSelector((state) => state.cart );
+  const { cart,total } = useSelector((state) => state.cart );
 
 
   useEffect(() => {
@@ -24,6 +21,7 @@ const ShoppingCart = () => {
     if (ShoppingCartLS.length > 0) {
       // Actualizar el carrito en el estado solo si hay elementos en el localStorage
       dispatch({ type: TYPES.SET_CART_FROM_STORAGE, payload: ShoppingCartLS });
+      dispatch({ type:TYPES.TOTAL})
     }
   }, []);
 
@@ -33,8 +31,11 @@ const ShoppingCart = () => {
 
 
   const addToCart = (id) => {
+    dispatch({ type:TYPES.TOTAL})
     dispatch({type:TYPES.ADD_TO_CART, payload: id});
+    
   };
+  
   const delFromCart = (id, all= false) => {
     
       if(all){
@@ -42,11 +43,14 @@ const ShoppingCart = () => {
       }else{
         dispatch({type: TYPES.REMOVE_ONE_FROM_CART,payload:id})
       }
+      dispatch({ type:TYPES.TOTAL})
+      
   };
 
 
   const clearCart = () => {
     dispatch({type:TYPES.CLEAR_CART})
+    dispatch({ type:TYPES.TOTAL})
   };
 
   const addTalla= (id) => {

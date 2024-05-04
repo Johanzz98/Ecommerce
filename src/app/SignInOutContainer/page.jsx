@@ -11,8 +11,11 @@ import Login from '../login/page';
 
 
 const paperStyle = {
-  width: 340,
-  margin: "20px auto"
+  width: 500,
+ boxShadow: "none",
+ border:'1px solid grey',
+  
+  margin: "auto",
 };
 
 
@@ -35,7 +38,7 @@ const SignInOutContainer = () => {
         {...other}
       >
         {value === index && (
-          <Box p={3}>
+          <Box>
             <Typography component="div"> {children} </Typography>
           </Box>
         )}
@@ -47,7 +50,7 @@ const SignInOutContainer = () => {
 
   return (
     <div>
-      <Paper elevation={20} style={paperStyle}>
+      <Paper elevation={12} style={paperStyle}>
         <Tabs value={value} onChange={handleChange} aria-label="disabled tabs example">
           <Tab label="Login" />
           <Tab label="SignUp" />
@@ -61,6 +64,7 @@ const SignInOutContainer = () => {
           <SignUp/>
         </TabPanel>
       </Paper>
+      
     </div>
   );
 };

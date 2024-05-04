@@ -1,60 +1,86 @@
+
 import React, { useEffect, useState } from 'react';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
-import MenuItem from '@mui/material/MenuItem';
-import ClearIcon from '@mui/icons-material/Clear';
 import DeleteSweepIcon from '@mui/icons-material/DeleteSweep';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
 import { TYPES } from '@/actions/ShoppingActions';
 import { useDispatch } from "react-redux";
-import Select from '@mui/material/Select';
-import FormControl from '@mui/material/FormControl';
-import InputLabel from '@mui/material/InputLabel';
-import { talla } from "../Carousel/LastCarouselItem";
-
 import Grid from '@mui/material/Grid';
-import { Container } from '@mui/material';
+import IconButton from '@mui/material/IconButton';
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
+import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 const styleBox = {
-  padding: '1rem',
-  margin: '2rem',
-  boxShadow: '0 0 1rem #00000025, 0 0 10px rgba(0, 0, 0, 0.2)', // Efecto difuminado en el borde
-  color: 'black',
-  borderRadius: '30px',
-  border: '2px  #000000', // Borde oscuro
-  paddingTop: '20px',
-  paddingBottom: 0
+  
+  margin:'12px 0',
+  color: '#111',
+  maxWidth: "360px",
+  height: '100px',
+  display: 'flex',
+  alignItems: "center",
+  position: 'relative', 
+  
 };
 
-const cart = {
-  width: '150px',
-  height: '150px',
-  objectFit: 'cover',
-  marginBottom: '12px'
+const SmallStylebox= {
+  
+  color: '#111',
+  maxWidth: "360px",
+  height: '100px',
+  display: 'flex',
+  alignItems: "center",
+  position: 'relative', 
+  
+  marginBottom:'16px'
+  
+};
 
+
+const cart = {
+  width: '100px',
+  height: '100px',
+  objectFit: 'contain',
+ 
+};
+
+const Smallcart = {
+  width: '100px',
+  height: '100px',
+  objectFit: 'contain',
+
+ 
+  
 };
 
 const fontName = {
-  fontFamily: "'Arimo', sans-serif",
+  fontFamily: "Helvetica,sans-serif",
   fontOpticalSizing: 'auto',
-  fontSize: '16px',
+  fontSize: '.75rem',
   fontWeight: 600,
   fontStyle: 'normal',
-  marginBottom: '12px'
+  marginBottom: '12px',
+  color: "#111",
+  marginBottom: '4px',
+  textTransform: "capitalize",
+
 };
 
 const fontDescription = {
-  color: '#707072',
   fontSize: '12px',
-  marginBottom: '12px'
-};
-
-const sTalla= {
-  display: 'flex',
-  justifyContent: 'flex-start',
-  alignItems: 'center', 
+  color: '#111',
+  marginBottom: '4px',
+  border: 'none',
+  fontWeight: 400,
+  textTransform: 'uppercase',
+  fontFamily: " 'Helvetica', sans-serif",
+  WebkitLineClamp: 2,
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+  display: '-webkit-box',
+  WebkitBoxOrient: 'vertical',
   
 };
 
@@ -62,118 +88,132 @@ const column = {
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'flex-start',
-  marginBottom: '-10px'
+  margin:'0 12px 0'
 };
 
-const lastIconsBox = {
-  display: 'flex', 
+const SmallColumn={
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'flex-start',
+  margin:'6px 12px 24px',
+
  
-  marginTop: '-46px'  // Ajustamos el valor para que el borde inferior suba
+}
+const priceStyle = {
+  margin: 0,
+  fontFamily: "Inter,'Helvetica', sans-serif",
+  fontOpticalSizing: 'auto',
+  fontWeight: 540,
+  fontSize: "14px",
+  lineHeight: "1.6",
+  color: '#111',
+  letterSpacing: "0.0075em",
+  
+  marginTop: '1.2rem'
 };
+
+const SmallpriceStyle={
+  margin: 0,
+  fontFamily: "Inter,'Helvetica', sans-serif",
+  fontOpticalSizing: 'auto',
+  fontWeight: 540,
+  fontSize: "14px",
+  lineHeight: "1.6",
+  color: '#111',
+  letterSpacing: "0.0075em",
+ 
+  marginBottom: '-4rem'
+
+}
 
 const CartItems = ({ data, delFromCart }) => {
+
+  const theme = useTheme();
+ const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
+
   const { id, name, price, quantity, imageurl, description} = data;
   
   const dispatch = useDispatch();
-  const [tallaSeleccionada, setTallaSeleccionada] = useState(talla.length > 0 ? talla[0] : '');
   const [cantidadSeleccionada, setCantidadSeleccionada] = useState(quantity);
 
   useEffect(() => {
     setCantidadSeleccionada(quantity);
   }, [quantity]);
 
-  useEffect(() => {
-    // Cargar el valor de tallaSeleccionada desde el localStorage
-    const savedTalla = localStorage.getItem(`ShoppingCarrito-${id}`);
-    if (savedTalla) {
-      setTallaSeleccionada(savedTalla);
-    }
-  }, [id]); // Dependencia en id para asegurar que se ejecute solo al montar el componente
-   
 
-  const handleChangeTalla = (event) => {
-    const tallaValue = event.target.value;
-    setTallaSeleccionada(tallaValue);
-    dispatch({ type: TYPES.ADD_TALLA, payload: { id, talla: tallaValue } });
-    // Guardar el valor de tallaSeleccionada en el localStorage
-    localStorage.setItem(`ShoppingCarrito-${id}`, tallaValue);
+  const handleIncrement = () => {
+    setCantidadSeleccionada(prevCantidad => prevCantidad + 1);
+    dispatch({ type: TYPES.QUANTITY, payload: { id, quantity: cantidadSeleccionada + 1 } });
+    dispatch({ type:TYPES.TOTAL})
   };
   
-  const handleChangeCantidad = (event) => {
-    const newValue = event.target.value;
-    setCantidadSeleccionada(newValue >= 1 ? newValue : 1);
-    dispatch({ type: TYPES.QUANTITY, payload: { id, quantity: newValue } });
+  const handleDecrement = () => {
+    if (cantidadSeleccionada > 1) {
+      setCantidadSeleccionada(prevCantidad => prevCantidad - 1);
+      dispatch({ type: TYPES.QUANTITY, payload: { id, quantity: cantidadSeleccionada - 1 } });
+      dispatch({ type:TYPES.TOTAL})
+    }
   };
 
-  return (
-    <Box sx={styleBox}>
-      <Grid container>
-        <Grid item xs={12} md={3.5}>
-          <img src={imageurl} alt={name} style={cart} />
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <Box sx={column}>
-            <Typography variant="h4" sx={fontName}>
-              {name}
-            </Typography>
-            <Typography variant="body1" sx={fontDescription}>
-              {description}
-            </Typography>
-            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', marginBottom: '1rem', marginTop: '5px' }}>
-              <Box sx={sTalla}>
-                <Typography variant="h7" sx={{marginRight:'12px'}}>Selecciona una talla:</Typography>
-                <FormControl sx={{ minWidth: 75, height: 30 }}>
-                  <InputLabel id="talla-label">Talla</InputLabel>
-                  <Select
-                    labelId="talla-label"
-                    id="talla"
-                    value={tallaSeleccionada}
-                    label="Talla"
-                    onChange={handleChangeTalla}
-                  >
-                    {talla.map((tallaItem) => (
-                      <MenuItem key={tallaItem} value={tallaItem}>
-                        {tallaItem}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
-              </Box>
-              <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: '-1rem' }}>
-                <Typography sx={{marginBottom:'25px'}}> Quantity</Typography>
-                <TextField 
-                  type="number"
-                  value={cantidadSeleccionada}
-                  onChange={handleChangeCantidad}
-                  variant="outlined"
-                  sx={{ width: '60px', fontSize: '12px', marginLeft: '1rem' }}
-                  InputProps={{ style: { color: 'black', height: 25, marginTop: '-6px', marginBottom: '1rem', marginLeft:'2px' } }}
-                  inputProps={{ min: 1 }}
-                />
-              </Box>
-            </Box>
-          </Box>
-          <Box sx={lastIconsBox}>
-            <Box sx={{mt:4, mr:6}} >
-            <FavoriteBorderIcon sx={{mr: 1,  fontSize: '24px'}} />
-            <ClearIcon variant="contained" color="secondary" onClick={() => delFromCart(id)} sx={{ fontSize: '24px'}}>
-              Eliminar
-            </ClearIcon>
-            </Box>
-          </Box>
-        </Grid>
-      </Grid>
-      <Box sx={{ position: 'relative'}}>
-  <Box sx={{ display: 'flex', alignItems: 'center', position: 'absolute', top: '5px', right: '0', marginTop: '-2.5rem', marginRight: '1rem' }}>
-  <Typography variant="h6" sx={{marginRight:'1rem'}}>${(price * cantidadSeleccionada).toFixed(3)}</Typography>
 
-        <DeleteSweepIcon variant="contained" color="secondary" onClick={() => delFromCart(id, true)} sx={{ fontSize: '21px' }}>
-          Eliminar Todos
-        </DeleteSweepIcon>
+  return (
+    <Box  style={isSmallScreen ? SmallStylebox : styleBox} > 
+    <Grid >
+      <Grid item xs={12} md={4.5}  >
+        <img src={imageurl} alt={name} style={isSmallScreen ? Smallcart : cart} />
+      </Grid>
+      
+      
+      </Grid>
+      <Box style={isSmallScreen ? SmallColumn: column} >
+          <Typography sx={fontName}>
+            {name}
+          </Typography>
+          <Typography  sx={fontDescription}>
+            {description}
+          </Typography>
+          <Grid item xs={12} md={!isSmallScreen ? 1.5 : false} style={{ display: !isSmallScreen ? 'block' : 'none', visibility: !isSmallScreen ? 'visible' : 'hidden' }}>
+  <Box sx={{ position:'relative',bottom:'2px'}}>
+  <Typography sx={priceStyle}>${(price * cantidadSeleccionada).toFixed(3)}</Typography>
+  </Box>
+</Grid>
+
+          {isSmallScreen && (
+              <Box sx={{ display: 'flex', alignItems: 'center', borderRadius: '12px', border: '1px solid #bdbdbd',position:'relative', top:'14px'}}>
+              <IconButton onClick={handleDecrement} sx={{ width: '24px', height: '12px', }}><RemoveIcon sx={{ fontSize: '16px' }} /></IconButton>
+              <Typography sx={{ padding: '2px 8px', fontSize: '14px' }}>{cantidadSeleccionada}</Typography>
+              <IconButton onClick={handleIncrement} sx={{ width: '24px', height: '12px'}}><AddIcon sx={{ fontSize: '16px' }} /></IconButton>
+            </Box>
+            )}
+          </Box>
+       
+        {!isSmallScreen && (
+         <Box sx={{ display: 'flex', alignItems: 'center', borderRadius: '10px', border: '1px solid #bdbdbd',position: 'relative', top:'32px'  }}>
+         <IconButton onClick={handleDecrement} sx={{ width: '24px', height: '32px', }}><RemoveIcon sx={{ fontSize: '16px' }} /></IconButton>
+         <Typography sx={{ padding: '2px 8px', fontSize: '14px' }}>{cantidadSeleccionada}</Typography>
+         <IconButton onClick={handleIncrement} sx={{ width: '24px', height: '32px'}}><AddIcon sx={{ fontSize: '16px' }} /></IconButton>
+       </Box>
+        )}
+      <Box>
+      <Box sx={{ position: 'static' }}>
+      <Box sx={{ display: 'flex', alignItems: 'center', position: 'absolute', top: 0, right: '2px' }}>
+      <IconButton sx={{ width: '24px', height: '32px' }}>
+ 
+ 
+  <DeleteOutlinedIcon variant="contained" color="secondary" onClick={() => delFromCart(id, true)} sx={{ fontSize: '24px', cursor:'pointer' }}/>
+   
+    </IconButton>
         </Box>
+        </Box>
+      
+  
       </Box>
+      {isSmallScreen && (
+       <Typography  sx={SmallpriceStyle}>${(price * cantidadSeleccionada).toFixed(3)}</Typography>
+      )}
+      
     </Box>
-  );
+ );
 };
 
 export default CartItems;

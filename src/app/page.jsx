@@ -18,6 +18,7 @@ import ShoppingCart from '@/components/Cart/ShoppingCart';
 import { store } from "@/services/store"
 import {Provider} from "react-redux"
 import "./App.css"
+import PageWithWhatsAppButton from '@/PageWithWhatsAppButton';
 
 const theme = createTheme({
  palette: {
@@ -36,6 +37,7 @@ export default function Page() {
       <Provider store={store()}>
       <Box sx={{ mt: 6 }}>
         <Navbar />
+        <PageWithWhatsAppButton/>
         <Carousel />
         <Mid />
         <Static />
