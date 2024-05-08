@@ -53,20 +53,20 @@ const SmallBst = {
   borderRadius: '22px',
   overflow: 'hidden',
   width: 150,
-  color: '#e53935',
+  color: 'red',
   fontFamily: "Nunito Sans, sans-serif",
   fontWeight: 1000,
   fontSize: "18px",
 };
 const SmallBstLogin = {
   position: 'absolute',
-  top: 450,
-  left: 40,
+  top: 380,
+  left: 80,
   
   borderRadius: '22px',
   overflow: 'hidden',
-  width: 150,
-  color: 'White',
+ 
+  color: 'white',
   fontFamily: "Nunito Sans, sans-serif",
   fontWeight: 1000,
   fontSize: "20px",
@@ -115,8 +115,8 @@ const BstSelected = {
 const SmallBst2 = {
   position: 'absolute',
   borderRadius: '22px',
-  top: 380,
-  left: 37,
+  top: 450,
+  left: 36,
   width:150,
   color: 'red',
   backgroundColor: 'rgba(255, 255, 255, 0.7)',
