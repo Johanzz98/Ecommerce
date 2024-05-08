@@ -202,7 +202,7 @@ const Footer = () => {
                 />
               </Grid>
               <Grid item>
-                <Button variant="outlined" color="primary" type="submit">
+                <Button variant="outlined" color="primary" type="submit" sx={{color:'white', borderColor:'white',height:'41px'}}>
                   Subscribe
                 </Button>
               </Grid>
@@ -648,7 +648,7 @@ const Footer = () => {
                 />
               </Grid>
               <Grid item>
-                <Button variant="outlined" color="primary" type="submit">
+                <Button variant="outlined" color="primary" type="submit" sx={{color:'white', borderColor:'white',height:'40px'}}>
                   Subscribe
                 </Button>
               </Grid>

@@ -6,7 +6,7 @@ import SearchModal from "./SearchModal";
 import LoginDrawers from "./LoginDrawers";
 import LoginDrawerMax from "./LoginDrawerMax"
 import NextLink from 'next/link'; // Importa el componente NextLink
-
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 /* Icons */
 import InboxIcon from "@mui/icons-material/Inbox";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -17,7 +17,17 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import CartDrawersMax from "./CartDrawers.jsx";
 import CartDrawers from "./CartDrawersMax";
 
-
+const theme = createTheme({
+    palette: {
+      primary: {
+        main: '#fafafa', // Color de fondo del navbar
+      },
+      secondary: {
+        main: '#212121', // Color del texto del navbar
+      },
+    },
+  });
+  
 
 const navLinks = [
     {
@@ -113,6 +123,7 @@ export default function Navbar() {
   
     
     return (
+        <ThemeProvider theme={theme}>
         <>
             <SecondAppBar>
                 <Toolbar>
@@ -233,5 +244,6 @@ export default function Navbar() {
                 <NavListDrawers navLinks={navLinks} />
             </Drawer>
         </>
+        </ThemeProvider>
     );
 }

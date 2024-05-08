@@ -36,10 +36,9 @@ export default function Page() {
   return (
     <ThemeProvider theme={theme}>
       <Provider store={store()}>
-        <Box sx={{ mt: 6 }}>
+        <Box>
           <Navbar />
-          <PageWithWhatsAppButton />
-          <Carousel />
+        
           <SignInOutContainer palette={{
             primary: {
               main: '#7B68EE', // Ejemplo de modificación de paleta

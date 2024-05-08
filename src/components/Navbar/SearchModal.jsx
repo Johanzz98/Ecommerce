@@ -7,7 +7,7 @@ import Slide from '@mui/material/Slide';
 
 const style = {
  position: 'absolute',
- top: '40px',
+ top: '20px',
  left: '5px',
  width: '90%',
  height: '30px',
@@ -32,14 +32,14 @@ const inputStyle = {
 
 const styleBox = {
  backgroundColor: 'white',
- height: '125px',
+ height: '70px',
 };
 
 // Estilo adicional para mover el ícono de búsqueda hacia arriba
 const searchContainerStyle = {
  display: 'flex',
  alignItems: 'center', // Asegura que el ícono esté centrado verticalmente
- marginButtom: '20px', // Ajusta este valor para mover el ícono hacia arriba o hacia abajo
+ // Ajusta este valor para mover el ícono hacia arriba o hacia abajo
 };
 
 export default function SearchModal(props) {
